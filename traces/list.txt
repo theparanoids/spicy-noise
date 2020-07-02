@@ -1,0 +1,5 @@
+This directory contains list of trace files used.
+
+https://github.com/wireshark/wireshark/blob/master/test/captures/wireguard-psk.pcap
+
+https://github.com/wireshark/wireshark/blob/master/test/captures/wireguard-ping-tcp.pcap

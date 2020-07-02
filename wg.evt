@@ -1,0 +1,15 @@
+# This Spicy EVT file defines events which will be passed to Zeek.
+#
+# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
+#
+# Copyright 2020, Verizon Media
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+
+protocol analyzer spicy::WireGuard over UDP:
+    parse with WireGuard::WG_MSG;
+
+on WireGuard::WG_MSG -> event WireGuard::wg_msg($conn, self.msg_type, self.reserved_zero);
+on WireGuard::INITIATION -> event WireGuard::initiation($conn, self.sender_index, self.unenc_ephemeral, self.enc_static, self.enc_timestamp, self.mac1, self.mac2 );
+on WireGuard::RESPONSE -> event WireGuard::response($conn, self.sender_index, self.receiver_index, self.unenc_ephemeral, self.enc_nothing, self.mac1, self.mac2 );
+on WireGuard::COOKIE -> event WireGuard::cookie($conn, self.receiver_index, self.nonce, self.encrypted_cookie );
+on WireGuard::TRANSPORT -> event WireGuard::transport($conn, self.receiver_index, self.counter, self.enc_packet );

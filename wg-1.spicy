@@ -1,0 +1,45 @@
+#
+# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
+#
+# Copyright 2020, Verizon Media
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+
+module Wireguard;
+
+import spicy;
+
+public type Handshake_Initiation = unit { 
+	msg_type: 		uint8;
+        reserved_zero: 		uint8[3];
+        sender_index: 		uint32 &byte-order=spicy::ByteOrder::Little;
+        unenc_ephemeral_array:	uint8[32];
+        enc_static_array:	uint8[48];
+        enc_timestamp:		uint8[28];
+        mac1:			uint8[16];
+	mac2:			uint8[16];
+
+	on %done {
+            print "WG_TYPE:		%X" % self.msg_type;
+            print "RESERVED:		%x" % self.reserved_zero;
+            print "SENDER_INDEX:		%02X" % self.sender_index;
+#            print "UNENC_EPHEMERAL_BYTES:	%x" % self.unenc_ephemeral_bytes;
+            print "UNENC_EPHEMERAL_ARRAY:	%x" % self.unenc_ephemeral_array;
+            #print "ENC_STATIC_BYTES:		%x" % self.enc_static_bytes;
+            print "ENC_STATIC_ARRAY:		%s" % self.enc_static_array;
+            print "ENC_TIMESTAMP	%X" % self.enc_timestamp;
+            print "MAC1:		%X" % self.mac1;
+            print "MAC2:		%X" % self.mac2;
+        }
+};
+
+    #u8 message_type
+    #u8 reserved_zero[3]
+    #u32 sender_index
+    #u8 unencrypted_ephemeral[32]
+    #u8 encrypted_static[AEAD_LEN(32)]
+    #u8 encrypted_timestamp[AEAD_LEN(12)]
+    #u8 mac1[16]
+    #u8 mac2[16]
+
+# To Test
+#printf '\x01\x00\x00\x00\x02\x9c\x03\xc1\xf3\x0c\xeb\x67\x14\x8d\xd2\x7c\x78\xd5\x2d\x01\x96\xb6\xb7\x8b\x71\x54\x29\x86\xf5\x63\xac\x89\x88\x79\x35\x3f\x02\x2f\x17\x47\x70\c5\b3\d4\33\cf\b4\9f\d3\31\16\88\28\4c\e6\7e\c7\21\11\e6\55\12\9f\c5\f6\be\d2\e0\a4\4b\8d\28\c2\22\c6\e1\47\9a\08\33\c7\a1\f6\41\7b\73\3c\1e\f0\49\fa\b5\e4\51\af\f5\61\ea\42\8c\21\16\f7\d1\02\3c\cd\ac\2b\2a\00\ec\be\02\73\c9\f8\4b\1c\69\50\32\08\4b\58\e7\d2\ff\9f\cf\19\fd\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00' | spicy-driver wg.spicy

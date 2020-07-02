@@ -1,0 +1,52 @@
+#
+# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
+#
+# Copyright 2020, Verizon Media
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+
+module Wireguard;
+
+import spicy;
+
+public type HandShake_Reply = unit { 
+	msg_type: 		uint8;
+        reserved_zero: 		uint8[3];
+        sender_index: 		uint32 &byte-order=spicy::ByteOrder::Little;
+	receiver_index:		uint32 &byte-order=spicy::ByteOrder::Little;
+        unenc_ephemeral:	uint8[32];
+        enc_nothing:		uint8[16];
+        mac1:			uint8[16];
+	mac2:			uint8[16];
+
+	on %done {
+            print "WG_TYPE:		%x" % self.msg_type;
+            print "RESERVED:		%x" % self.reserved_zero;
+            print "SENDER_INDEX:		%02X" % self.sender_index;
+            print "RECEIVER_INDEX:		%02X" % self.receiver_index;
+            print "UNENC_EPHEMERAL:	%x" % self.unenc_ephemeral;
+            print "ENC_NOTHING:		%x" % self.enc_nothing;
+            print "MAC1:		%X" % self.mac1;
+            print "MAC2:		%X" % self.mac2;
+        }
+};
+
+#msg = handshake_response {
+#    u8 message_type
+#    u8 reserved_zero[3]
+#    u32 sender_index
+#    u32 receiver_index
+#    u8 unencrypted_ephemeral[32]
+#    u8 encrypted_nothing[AEAD_LEN(0)]
+#    u8 mac1[16]
+#    u8 mac2[16]
+#}
+
+#	0x0020:  01fa e3dc 029c 03c1 394c e106 7fac cdff
+#	0x0030:  74d7 1ddd e645 0cce db94 8390 08a7 a2c0
+#	0x0040:  cdb0 b4ab e080 565b 96d1 6752 c32e 60ba
+#	0x0050:  abfb 5413 fba2 4276 beae 31ec e918 c017
+#	0x0060:  00e5 dfe6 6ca3 c7b9 0000 0000 0000 0000
+#	0x0070:  0000 0000 0000 0000
+
+#To Test
+#printf '02\x00\x00\x00\x01\xfa\xe3\xdc\x02\x9c\x03\xc1\x39\x4c\xe1\x06\x7f\xac\xcd\xff\x74\xd7\x1d\xdd\xe6\x45\x0c\xce\xdb\x94\x83\x90\x08\xa7\xa2\xc0\xcd\xb0\xb4\xab\xe0\x80\x56\x5b\x96\xd1\x67\x52\xc3\x2e\x60\xba\xab\xfb\x54\x13\xfb\xa2\x42\x76\xbe\xae\x31\xec\xe9\x18\xc0\x17\x00\xe5\xdf\xe6\x6c\xa3\xc7\xb9\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' | spicy-driver wg-2.spicy
