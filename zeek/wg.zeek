@@ -1,7 +1,7 @@
-# This Zeek scritp will log out details of WireGuard sessions.
+# This Zeek script will log out details of WireGuard sessions.
 #
 # Copyright 2020, Verizon Media
-# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/theparanoids/spicy-noise root directory for terms
 
 module WireGuard;
 
