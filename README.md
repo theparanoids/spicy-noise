@@ -73,4 +73,7 @@ Sample of spicy-noise.log
     
     1533078876.831583	10.9.0.1	41255	10.9.0.2	51820	RESPONSE	dce3fa01	c1039c02	394ce1067faccdff74d71ddde6450ccedb94839008a7a2c0cdb0b4abe080565b	-	-	96d16752c32e60baabfb5413fba24276	-	-	beae31ece918c01700e5dfe66ca3c7b9	00000000000000000000000000000000	-	-
     
-## Spicy-Noise created by Jeff Atkinson.  Please share your questions and suggestions by filing an issue on [Github](https://github.com/theparanoids/spicy-noise/issues). 
+## Spicy-Noise creator
+  Jeff Atkinson.  
+
+Please share your questions and suggestions by filing an issue on [Github](https://github.com/theparanoids/spicy-noise/issues). 
