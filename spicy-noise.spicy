@@ -1,9 +1,8 @@
 # This Spicy protocol analyzer will identify WireGuard traffic and extract details for Initiation, Respoinse, Cookie, and Transport packets.
 #
-# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
 #
 # Copyright 2020, Verizon Media
-# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/theparanoids/Spicy_WireGuard root directory for terms
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/theparanoids/spicy-noise root directory for terms
 
 module WireGuard;
 

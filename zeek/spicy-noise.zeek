@@ -1,9 +1,7 @@
 # This Zeek scritp will log out details of WireGuard sessions.
 #
-# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
-#
 # Copyright 2020, Verizon Media
-# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/theparanoids/spicy-noise root directory for terms
 
 module WireGuard;
 
@@ -33,7 +31,7 @@ export {
 
 event zeek_init() {
 
-  Log::create_stream(WireGuard::WGLOG, [$columns=Info, $path="wireguard"] );
+  Log::create_stream(WireGuard::WGLOG, [$columns=Info, $path="spicy-noise"] );
 
 }
 

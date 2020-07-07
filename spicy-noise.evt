@@ -1,9 +1,7 @@
 # This Spicy EVT file defines events which will be passed to Zeek.
 #
-# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
-#
 # Copyright 2020, Verizon Media
-# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
+# Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/theparanoids/spicy-noise root directory for terms
 
 protocol analyzer spicy::WireGuard over UDP:
     parse with WireGuard::WG_MSG;

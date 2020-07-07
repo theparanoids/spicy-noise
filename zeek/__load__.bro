@@ -1,3 +1,3 @@
 @load-sigs ./dpd.sig
 
-@load ./wg.zeek
+@load ./spicy-noise.zeek
