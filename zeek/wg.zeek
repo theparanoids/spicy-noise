@@ -1,7 +1,5 @@
 # This Zeek scritp will log out details of WireGuard sessions.
 #
-# Author: Jeff Atkinson (jeff.atkinson@verizonmedia.com)
-#
 # Copyright 2020, Verizon Media
 # Licensed under the terms of the Apache 2.0 license. See LICENSE file in github.com/yahoo/Spicy_WireGuard root directory for terms
 
