@@ -23,11 +23,11 @@ Zeek can perform just in time compilation of spicy parsers.  You can test this f
     ./zeek -Cr traes/wireguard-psk.pcap spicy-noise.spicy spicy-noise.evt spicy-noise.zeek 
 
 ## non JIT Usage
-Zeek can also load precompiled parsers.  Change to the direcotry containing Spicy and configure with this command.
+Zeek can also load precompiled parsers.  Change to the directory containing Spicy and configure with this command.
 
 ### Build Compiled Parser
 
-To build a compiled parser change into the repository's diretory. Then use spicyz to create the compiled spicy-noise.hlto parser by specifying the .spicy and .evt files.
+To build a compiled parser change into the repository's directory. Then use spicyz to create the compiled spicy-noise.hlto parser by specifying the .spicy and .evt files.
 
     spicyz -o spicy-noise.hlto spicy-noise.spicy spicy-noise.evt
 
@@ -38,13 +38,13 @@ Reference Spicy's Installation document and configure with the disable jit for z
     make zeek-plugin
     make install
 
-This will build the [Zeek plugin](https://docs.zeek.org/projects/spicy/en/latest/zeek.html?highlight=plugin#installation) found at <spicy_source_dir>/zeek/plugin/Zeek_Spicy.tgz.  Move teh Zeek_Spicy.tgz archive to your monitoring platform.  Extract contents of the archive to <zeek_install_dir>/lib/zeek/plugins/Zeek_Spicy.  
+This will build the [Zeek plugin](https://docs.zeek.org/projects/spicy/en/latest/zeek.html?highlight=plugin#installation) found at <spicy_source_dir>/zeek/plugin/Zeek_Spicy.tgz.  Move the Zeek_Spicy.tgz archive to your monitoring platform.  Extract contents of the archive to <zeek_install_dir>/lib/zeek/plugins/Zeek_Spicy.  
 
 Zeek must be built with Zeek support as defined in the documentation.
 
 ## Deploy Spicy Noise
 
-Following the instructions above will install all of the requirements to deploy Spicy WireGuard parser.  Copy the contents of zeek directory from the repository and the spicy-noise.hlto file just created to <zeek_install_dir>/share/zeek/site/spicy-noise.  Load the spicy-noise directory by adding the following line to your local.zeek file.
+Following the instructions above will install all of the requirements to deploy Spicy WireGuard parser.  Copy the contents of the zeek directory from the repository and the spicy-noise.hlto file just created to <zeek_install_dir>/share/zeek/site/spicy-noise.  Load the spicy-noise directory by adding the following line to your local.zeek file.
 
     @load spicy-noise
 
@@ -59,7 +59,7 @@ Restart Zeek via zeekctl and deploy the new Spicy WireGuard parser.
     zeekctl check
     zeekctl deploy
 
-Zeek will match packets on the monitored network to the dynamic protocol detection signature for WireGuard.  The streams will be forwarded and parsed by spicy-noise.hlto and raise events which are handled by wg.zeek.  Zeek will notate WireGuard traffic in conn.log with a service of wireguard.  A new spicy-noise.log will be created containing detials of the protocol negotiation.
+Zeek will match packets on the monitored network to the dynamic protocol detection signature for WireGuard.  The streams will be forwarded and parsed by spicy-noise.hlto and raise events which are handled by wg.zeek.  Zeek will notate WireGuard traffic in conn.log with a service of wireguard.  A new spicy-noise.log will be created containing details of the protocol negotiation.
 
 Sample of conn.log
     
