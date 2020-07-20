@@ -20,7 +20,7 @@ Zeek with the Spicy plugin install can load analyzers in two methods.  Just-In-T
 ## JIT Usage
 Zeek can perform just in time compilation of spicy parsers.  You can test this from the directory where the repository was downloaded.  Start Zeek and have it read in the wireguard-psk.pcap file and load the parser, event file,  and Spicy-Noise script.
 
-    ./zeek -Cr traes/wireguard-psk.pcap spicy-noise.spicy spicy-noise.evt spicy-noise.zeek 
+    ./zeek -Cr traces/wireguard-psk.pcap spicy-noise.spicy spicy-noise.evt zeek/spicy-noise.zeek
 
 ## non JIT Usage
 Zeek can also load precompiled parsers.  Change to the directory containing Spicy and configure with this command.
