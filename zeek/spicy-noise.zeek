@@ -10,7 +10,8 @@ export {
     redef enum Log::ID += {WGLOG};
 
     type Info: record {
-      ts: time	&log;
+      ts: time		&log;
+      uid: string	&log;
       id: conn_id	&log;
       msg_type:		string &log &optional;
       sender:		string &log &optional;
@@ -40,7 +41,7 @@ event WireGuard::initiation(c: connection, sender_index: int, unenc_ephemeral: s
   #print "";
   #print "ZEEK - Initiation";
 
-  local rec: WireGuard::Info = [ $ts = network_time(), $id = c$id ];
+  local rec: WireGuard::Info = [ $ts = network_time(), $uid = c$uid, $id = c$id ];
   add c$service["WireGuard"];
   rec$sender = fmt("%x",sender_index);
   rec$unenc_ephemeral = bytestring_to_hexstr(unenc_ephemeral);
@@ -57,7 +58,7 @@ event WireGuard::response(c: connection, sender_index: int, receiver_index: int,
   #print "";
   #print "ZEEK - RESPONSE"; 
 
-  local rec: WireGuard::Info = [ $ts = network_time(), $id = c$id ];
+  local rec: WireGuard::Info = [ $ts = network_time(), $uid = c$uid, $id = c$id ];
   rec$msg_type = "RESPONSE";
   rec$sender = fmt("%x", sender_index);
   rec$receiver = fmt("%x",receiver_index);
@@ -78,7 +79,7 @@ event WireGuard::transport(c: connection, receiver_index: int, num_pkts: int, en
   #print "";
   #print "ZEEK - TRANSPORT";
 
-  local rec: WireGuard::Info = [ $ts = network_time(), $id = c$id ];
+  local rec: WireGuard::Info = [ $ts = network_time(), $uid = c$uid, $id = c$id ];
   rec$msg_type = "TRANSPORT";
   rec$receiver = fmt("%x",receiver_index);
   rec$enc_payload_len = |enc_packet|;
